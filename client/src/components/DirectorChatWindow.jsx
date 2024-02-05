@@ -70,6 +70,8 @@ const DirectorChatWindow = ({ messages, setMessages, id, findParticularChat, act
         <>
             <div className="text-gray-600 body-font w-4/6 mt-24 bg-green-300 rounded-lg mx-5" style={{ height: '83vh' }}>
                 <div className="flex flex-col justify-between">
+                    {id? (
+                        <>
                     <div style={{ height: '75vh', overflowY: 'auto' }} ref={chatContainerRef}>
                         {messages &&
                             messages.map((message, index) => (
@@ -87,6 +89,12 @@ const DirectorChatWindow = ({ messages, setMessages, id, findParticularChat, act
                             Send
                         </button>
                     </div>
+                    </>
+                    ) : (
+                        <div className="text-center mt-10 text-lg text-gray-900 body-font">
+                            Click on an Actor to view the chat.
+                        </div>
+                    )}
                 </div>
             </div>
         </>

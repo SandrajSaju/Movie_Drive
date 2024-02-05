@@ -7,6 +7,7 @@ const ActorChatSidebar = ({ findParticularChat }) => {
     const navigate = useNavigate();
     const { actorInfo } = useSelector((state) => state.actorAuth);
     const [directors, setDirectors] = useState([])
+    const [selectedDirectorId, setSelectedDirectorId] = useState(null)
 
     const actorGetAllChats = async () => {
         try {
@@ -24,6 +25,11 @@ const ActorChatSidebar = ({ findParticularChat }) => {
         actorGetAllChats();
     }, [directors])
 
+    const handleDirectorClick = (directorId) => {
+        findParticularChat(directorId, actorInfo._id);
+        setSelectedDirectorId(directorId);
+    }
+
     return (
         <>
             <div className="text-gray-600 body-font w-1/6 max-md:w-1/6 max-md:mt-40 mt-24 bg-green-300 rounded-lg" style={{ marginLeft: "21.5rem", height: "83vh" }}>
@@ -33,7 +39,7 @@ const ActorChatSidebar = ({ findParticularChat }) => {
                 <hr />
                 {
                     directors && directors.map(director => (
-                        <div className='text-center rounded-xl m-2 h-12 px-2 py-2 font-medium text-lg text-white bg-slate-500 cursor-pointer' onClick={() => findParticularChat(director._id, actorInfo._id)}>
+                        <div className={`text-center rounded-xl m-2 h-12 px-2 py-2 font-medium text-lg text-white cursor-pointer ${selectedDirectorId === director._id ? 'bg-slate-700' : 'bg-slate-500'}`} onClick={() => handleDirectorClick(director._id)}>
                             <h1>{director.name}</h1>
                         </div>
                     ))
