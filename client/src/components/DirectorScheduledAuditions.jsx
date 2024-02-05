@@ -61,7 +61,7 @@ const DirectorScheduledAuditions = () => {
 
     const createOrder = (data) => {
         // Order is created on the server and the order id is returned
-        return fetch(`${serverUrl}/my-server/create-paypal-order`, {
+        return fetch(`${serverUrl}/director/my-server/create-paypal-order`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const DirectorScheduledAuditions = () => {
     };
     const onApprove = (data) => {
         // Order is captured on the server and the response is returned to the browser
-        return fetch(`${serverUrl}/my-server/capture-paypal-order`, {
+        return fetch(`${serverUrl}/director/my-server/capture-paypal-order`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

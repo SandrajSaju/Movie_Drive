@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import InputEmoji from 'react-input-emoji';
 import { useSelector } from 'react-redux';
 import axiosInstance from '../app/axiosInstance';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ActorChatWindow = ({ messages, setMessages, id, findParticularChat, actorId, actorSocket, members }) => {
     const navigate = useNavigate();
+    const chatContainerRef = useRef(null);
     const { actorInfo } = useSelector((state) => state.actorAuth);
     const [text, setText] = useState('');
 
@@ -62,12 +63,18 @@ const ActorChatWindow = ({ messages, setMessages, id, findParticularChat, actorI
         }
       }, [actorSentMessage, actorSocket]);
 
+      useEffect(() => {
+        // Scroll to the bottom when messages change
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     return (
         <>
             <div className="text-gray-600 body-font w-4/6 mt-24 bg-green-300 rounded-lg mx-5" style={{ height: '83vh' }}>
                 <div className="flex flex-col justify-between">
-                    <div style={{ height: '75vh', overflowY: 'auto' }}>
+                    <div style={{ height: '75vh', overflowY: 'auto' }} ref={chatContainerRef}>
                         {messages &&
                             messages.map((message, index) => (
                                 <div key={index} className={message.senderId === actorInfo?._id ? 'text-end m-3' : 'text-start m-3'}>
