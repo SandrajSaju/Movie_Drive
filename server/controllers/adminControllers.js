@@ -3,6 +3,7 @@ const Audition = require('../models/auditionModel');
 const CastingCall = require('../models/castingCallModel');
 const Director = require('../models/directorModel');
 const { generateToken } = require('../utils/generateToken');
+const PaidCompensation = require('../models/paidCompensation');
 const nodemailer = require('nodemailer');
 
 const adminLogin = async (req, res) => {
@@ -170,8 +171,27 @@ const adminGetCastingCallsByGenre = async (req,res) => {
                 }
             }
         ]);
-        console.log(castingCallsByGenre);
         res.status(200).json(castingCallsByGenre)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({ error: error.message })
+    }
+}
+
+const adminGetPaymentHistory = async (req,res) => {
+    try {
+        const payments = await PaidCompensation.find().populate('actor').populate('director').populate({
+            path:'audition',
+            populate: {
+                path:'castingCall',
+                populate: {
+                    path: 'director',
+                    model: 'Director'
+                }
+            }
+        });
+        console.log(payments);
+        res.status(200).json(payments)
     } catch (error) {
         console.log(error.message)
         res.status(500).json({ error: error.message })
@@ -192,5 +212,6 @@ module.exports = {
     adminApproveDirector,
     adminRejectDirector,
     adminGetActorAndDirectorCount,
-    adminGetCastingCallsByGenre
+    adminGetCastingCallsByGenre,
+    adminGetPaymentHistory
 }
