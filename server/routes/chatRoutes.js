@@ -9,7 +9,6 @@ router.get('/find/:actorId/:directorId',findChat);
 router.post('/message',addMessage);
 router.get('/actor/message/:chatId',actorGetMessage);
 router.get('/director/message/:chatId',directorGetMessage);
-// router.patch('/message/:id/mark-as-read',actorMarkAsRead)
 router.get('/actor/latestmessage/:actorId/:directorId',actorLatestMessage)
 
 module.exports = router

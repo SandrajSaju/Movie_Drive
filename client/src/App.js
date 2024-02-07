@@ -40,6 +40,7 @@ import DirectorPaymentsScreen from './screens/DirectorPaymentsScreen';
 import ActorPaymentsScreen from './screens/ActorPaymentsScreen';
 import AdminDashboardScreen from './screens/AdminDashboardScreen';
 import ActorErrorScreen from './screens/ActorErrorScreen';
+import ActorVideoCall from './components/ActorVideoCall';
 
 function App() {
   const initialOptions = {
@@ -70,7 +71,7 @@ function App() {
 
         <Route element={<Public role='admin' />} >
           <Route path='/admin/login' element={<AdminLoginScreen />} />
-          <Route path='/audition/:roomid' element={<VideoCallRoom />} />
+          {/* <Route path='/audition/:roomid' element={<VideoCallRoom />} /> */}
         </Route>
 
         <Route element={<ActorProtect />}>
@@ -83,6 +84,7 @@ function App() {
           <Route path='/actor/chats' element={<ActorChatScreen />} />
           <Route path='/actor/paymenthistory' element={<ActorPaymentsScreen />} />
           <Route path='/actor/404error' element={<ActorErrorScreen />} />
+          <Route path='/actoraudition/:roomid' element={<ActorVideoCall />} />
         </Route>
 
         <Route element={<DirectorProtect />}>
@@ -98,6 +100,7 @@ function App() {
           <Route path='/director/payment/paypal' element={<DirectorPaymentBox />} />
           <Route path='/director/paymenthistory' element={<DirectorPaymentsScreen />} />
           <Route path='/director/404error' element={<ActorErrorScreen />} />
+          <Route path='/directoraudition/:roomid' element={<VideoCallRoom />} />
 
         </Route>
 

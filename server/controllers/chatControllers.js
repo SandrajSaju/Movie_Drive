@@ -3,24 +3,6 @@ const Actor = require('../models/actorModel');
 const Director = require('../models/directorModel');
 const Message = require('../models/messageModel')
 
-// const createChat = async (req, res) => {
-//     try {
-//         const chat = await Chat.findOne({
-//             members: { $all: [req.body.actorId, req.body.directorId] }
-//         });
-//         if (!chat) {
-//             const newChat = new Chat({
-//                 members: [req.body.actorId, req.body.directorId]
-//             });
-//             await newChat.save();
-//             return res.status(200).json(newChat)
-//         }
-//         res.status(200).json(chat);
-//     } catch (error) {
-//         console.log(error.message);
-//         res.status(500).json(error.message)
-//     }
-// }
 
 const directorPersonalChats = async (req, res) => {
     try {
@@ -106,17 +88,6 @@ const addMessage = async (req, res) => {
     }
 }
 
-// const getMessage = async (req, res) => {
-//     try {
-//         const chatId = req.params.chatId;
-//         const message = await Message.find({ chatId });
-//         res.status(200).json(message)
-//     } catch (error) {
-//         console.log(error.message);
-//         res.status(500).json(error.message)
-//     }
-// }
-
 const actorGetMessage = async (req, res) => {
     try {
         const chatId = req.params.chatId;
@@ -139,16 +110,6 @@ const directorGetMessage = async (req, res) => {
     }
 }
 
-// const actorMarkAsRead = async (req,res)=> {
-//     try {
-//         const messageId = req.params.id
-//         await Message.findByIdAndUpdate(messageId,{isRead:true});
-//         res.status(200).json({message:"Message marked as read."})
-//     } catch (error) {
-//         console.log(error.message)
-//         res.status(200).json({error:error.message})
-//     }
-// }
 
 const actorLatestMessage = async (req,res) => {
     try {
@@ -174,6 +135,5 @@ module.exports = {
     addMessage,
     actorGetMessage,
     directorGetMessage,
-    // actorMarkAsRead,
     actorLatestMessage
 }

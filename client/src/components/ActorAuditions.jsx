@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import axiosInstance from '../app/axiosInstance'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const ActorAuditions = () => {
+  const { actorInfo } = useSelector((state) => state.actorAuth);
   const [auditions, setAuditions] = useState([])
   const [value, setValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAudition, setSelectedAudition] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleJoinRoom = () => {
-    navigate(`/audition/${value}`);
-  }
-  const handleOpenModal = () => {
-    setIsModalOpen(true)
+const handleJoinRoom = () => {
+    const temp=value.split('-')
+
+    if(temp[1]==actorInfo._id){
+      navigate(`/actoraudition/${value}`);
+    }else{
+      toast("Invalid Room ID");
+    }
+
+}
+const handleOpenModal = (audition) => {
+    setIsModalOpen(true);
+    setSelectedAudition(audition)
 }
 const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -74,7 +86,7 @@ const handleCloseModal = () => {
                   </button>
                   <button
                     className={`ml-2 px-3 py-2 w-32 bg-gray-800 text-white hover:bg-gray-950 rounded-lg`}
-                    onClick={handleOpenModal}
+                    onClick={()=>handleOpenModal(audition)}
                   >
                     Join Audition
                   </button>

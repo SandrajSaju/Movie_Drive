@@ -11,8 +11,10 @@ const DirectorScheduledAuditions = () => {
     const [selectedAudition, setSelectedAudition] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+    const [actorId,setActorId] = useState(null)
 
-    const handleOpenModal = () => {
+    const handleOpenModal = (id) => {
+        setActorId(id)
         setIsModalOpen(true)
     }
     const handleCloseModal = () => {
@@ -34,9 +36,10 @@ const DirectorScheduledAuditions = () => {
             const randomIndex = Math.floor(Math.random() * characters.length);
             roomid += characters.charAt(randomIndex);
         }
+        roomid=roomid+"-"+actorId
 
-        navigate(`/audition/${roomid}`)
-    }, [navigate])
+        navigate(`/directoraudition/${roomid}`)
+    }, [navigate,actorId])
 
     const getAuditions = async () => {
         try {
@@ -132,7 +135,7 @@ const DirectorScheduledAuditions = () => {
 
                                     <tr key={audition._id}>
                                         <td className="border-b"><img className='w-20 h-16 object-cover object-center m-auto px-1' src={audition.actor.profile.profileImage} alt='' /></td>
-                                        <td className="py-2 px-4 border-b text-center font-medium">{audition.actor.name}</td>
+                                        <td className="py-2 px-4 border-b text-center font-medium">{audition.actor.name} </td>
                                         <td className="py-2 px-4 border-b text-center font-medium">{audition.castingCall.castingCallTitle}</td>
                                         <td className="py-2 px-4 border-b text-center font-medium">{audition.castingCall.roleDescription}</td>
                                         <td className="py-2 px-4 border-b text-center font-medium">{new Date(audition.castingCall.auditionDate).toLocaleDateString()}</td>
@@ -148,7 +151,7 @@ const DirectorScheduledAuditions = () => {
                                             </button>
                                             <button
                                                 className={`ml-2 px-2 py-2 w-32 bg-gray-800 text-white hover:bg-gray-950 rounded-lg`}
-                                                onClick={handleOpenModal}
+                                                onClick={()=>handleOpenModal(audition.actor._id)}
                                             >
                                                 Start Audition
                                             </button>
