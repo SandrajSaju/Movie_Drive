@@ -31,6 +31,10 @@ const AdminDashboard = () => {
       const { data } = await axiosInstance.get('/admin/dashboard/paymenthistory', {
         headers: {
           "Authorization": localStorage.getItem("adminToken")
+        },
+        params:{
+          fromDate:fromDate,
+          toDate:toDate
         }
       });
       setPaymentHistory(data);

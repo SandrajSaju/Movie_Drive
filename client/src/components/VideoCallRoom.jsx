@@ -7,8 +7,11 @@ const VideoCallRoom = () => {
     const {roomid} = useParams();
     const director = useSelector((state) => state.directorAuth.directorInfo);
     const myMeeting = async (element) => {
-        const appID = 1319514999;
-        const serverSecret = "0c006670def0af8f329e7b36345132d6";
+      const appID = parseInt(process.env.REACT_APP_ZEGOCLOUD_APP_ID);
+      const serverSecret = process.env.REACT_APP_ZEGOCLOUD_SERVER_SECRET;
+        // const appID = 1319514999;
+        // const serverSecret = "0c006670def0af8f329e7b36345132d6";
+        console.log(appID,"....................",serverSecret);
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomid, Date.now().toString(), director.name);
         const zc = ZegoUIKitPrebuilt.create(kitToken);
         zc.joinRoom({

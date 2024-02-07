@@ -180,7 +180,20 @@ const adminGetCastingCallsByGenre = async (req,res) => {
 
 const adminGetPaymentHistory = async (req,res) => {
     try {
-        const payments = await PaidCompensation.find().populate('actor').populate('director').populate({
+        const fromDate = req.query.fromDate;
+        const toDate = req.query.toDate;
+
+        let query = {};
+
+        if(fromDate && toDate){
+            query.createdAt = {
+                $gte: new Date(fromDate),
+                $lte: new Date(toDate)
+            }
+        }
+        console.log(query);
+
+        const payments = await PaidCompensation.find(query).populate('actor').populate('director').populate({
             path:'audition',
             populate: {
                 path:'castingCall',
