@@ -7,11 +7,11 @@ const cors = require('cors');
 
 const io = require('socket.io')(8800, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: "https://movie-drive.vercel.app"
     }
 })
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "https://movie-drive.vercel.app" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
