@@ -38,7 +38,7 @@ const ActorChatScreen = () => {
   }
 
   useEffect(()=>{
-    const newSocket = io("https://moviedrive.onrender.com");
+    const newSocket = io("https://moviedrive.onrender.com:8800");
     newSocket.on("connect",()=>{
       setSocket(newSocket);
       newSocket.emit("new-user-add",actorId);
