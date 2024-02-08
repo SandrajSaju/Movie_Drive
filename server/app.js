@@ -5,7 +5,7 @@ const PORT = process.env.PORT
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const io = require('socket.io')(PORT, {
+const io = require('socket.io')(8800, {
     cors: {
         origin: "https://movie-drive.vercel.app"
     }
