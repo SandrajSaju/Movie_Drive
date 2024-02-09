@@ -6,20 +6,14 @@ const PORT = process.env.PORT
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-// const io = require('socket.io')(8080, {
-//     cors: {
-//         origin: "https://movie-drive.vercel.app"
-//     }
-// })
-
 const io = require('socket.io')(8080, {
     cors: {
-        origin: "https://moviedrive.onrender.com"
+        origin: "https://movie-drive.vercel.app"
     }
 })
 
 app.use(cors({ credentials: true, origin: "https://movie-drive.vercel.app" }));
-// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
