@@ -38,7 +38,7 @@ const ActorChatScreen = () => {
   }
 
   useEffect(()=>{
-    const newSocket = io("http://localhost:5000");
+    const newSocket = io("http://localhost:8080");
     // const newSocket = io("https://moviedrive.onrender.com:5000");
     newSocket.on("connect",()=>{
       setSocket(newSocket);

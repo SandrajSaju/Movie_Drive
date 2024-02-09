@@ -60,11 +60,11 @@ const DirectorChatWindow = ({ messages, setMessages, id, findParticularChat, act
         }
       }, [directorSentMessage, directorSocket]);
 
-      useEffect(() => {
-        if(chatContainerRef.current){
-            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
-        }
-      },[messages]);
+    //   useEffect(() => {
+    //     if(chatContainerRef.current){
+    //         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
+    //     }
+    //   },[messages]);
 
     return (
         <>

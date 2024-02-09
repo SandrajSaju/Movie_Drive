@@ -4,6 +4,10 @@ const axiosInstance = axios.create({
     baseURL: 'https://moviedrive.onrender.com'
 });
 
+// const axiosInstance = axios.create({
+//     baseURL: 'http://localhost:4000'
+// });
+
 axiosInstance.interceptors.request.use(
     (config) => {
         return config
