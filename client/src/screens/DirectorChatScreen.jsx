@@ -39,7 +39,7 @@ const DirectorChatScreen = () => {
   }
 
   useEffect(()=>{
-    const newSocket = io("http://localhost:8800");
+    const newSocket = io("http://localhost:5000");
     newSocket.on("connect",()=>{
       setSocket(newSocket);
       newSocket.emit("new-user-add",directorId);

@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 require("dotenv").config()
+const { configureSocket } = require('./socket');
 const PORT = process.env.PORT
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const io = require('socket.io')(8800, {
+const io = require('socket.io')(5000, {
     cors: {
         origin: "https://movie-drive.vercel.app"
     }
@@ -17,7 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const connectDB = require('./config/connect');
-const { configureSocket } = require('./socket');
 configureSocket(io);
 
 const actorRoutes = require("./routes/actorRoutes");
