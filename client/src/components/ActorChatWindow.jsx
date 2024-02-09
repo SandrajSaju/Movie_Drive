@@ -63,12 +63,11 @@ const ActorChatWindow = ({ messages, setMessages, id, findParticularChat, actorI
         }
       }, [actorSentMessage, actorSocket]);
 
-    //   useEffect(() => {
-    //     // Scroll to the bottom when messages change
-    //     if (chatContainerRef.current) {
-    //         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    //     }
-    // }, [messages]);
+      useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     return (
         <>
