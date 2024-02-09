@@ -65,7 +65,7 @@ const ActorChatWindow = ({ messages, setMessages, id, findParticularChat, actorI
 
       useEffect(() => {
         if (chatContainerRef.current) {
-            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
         }
     }, [messages]);
 
