@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-    baseURL: 'https://moviedrive.onrender.com'
-});
-
 // const axiosInstance = axios.create({
-//     baseURL: 'http://localhost:4000'
+//     baseURL: 'https://moviedrive.onrender.com'
 // });
+
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:4000'
+});
 
 axiosInstance.interceptors.request.use(
     (config) => {

@@ -1,0 +1,30 @@
+/* CSS for Left to Right Animation */
+@keyframes moveLeftToRight {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* CSS for Right to Left Animation */
+  @keyframes moveRightToLeft {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Apply animation to the heading based on the class */
+  .animate-left-to-right {
+    display: inline-block;
+    animation: moveLeftToRight 10s linear infinite;
+  }
+  
+  .animate-right-to-left {
+    display: inline-block;
+    animation: moveRightToLeft 10s linear infinite;
+  }
