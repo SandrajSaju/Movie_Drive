@@ -153,7 +153,7 @@ const DirectorCastingCalls = () => {
             )
         }
             {
-               !loading &&  castingCalls && castingCalls.length === 0 && (
+               !loading &&  castingCalls && castingCalls?.length === 0 && (
                     <section className="text-gray-600 body-font w-4/5 max-md:w-3/5 ml-96 max-md:ml-44">
                         <div className="container px-5 py-24 mx-auto">
                             <div className="flex flex-col w-full text-center mb-10">
@@ -167,7 +167,7 @@ const DirectorCastingCalls = () => {
                     </section>
                 )
             }
-            { !loading && castingCalls && castingCalls.length !== 0 && (<section className="text-gray-600 body-font w-4/5 max-md:w-3/5 ml-96 max-md:ml-44">
+            { !loading && castingCalls && castingCalls?.length !== 0 && (<section className="text-gray-600 body-font w-4/5 max-md:w-3/5 ml-96 max-md:ml-44">
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-col w-full text-center mb-10">
                         <h1 className="text-2xl font-bold title-font mb-4 text-gray-900 tracking-wider">CASTING CALLS</h1>

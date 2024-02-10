@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { adminLogin, adminGetActors, adminLogout, adminBlockActor, adminUnblockActor, adminGetDirectors,adminBlockDirector,adminUnblockDirector, getDirectorRequests, adminApproveDirector, adminRejectDirector, adminGetActorAndDirectorCount, adminGetCastingCallsByGenre, adminGetPaymentHistory} = require("../controllers/adminControllers");
+const { adminLogin, adminGetActors, adminLogout, adminBlockActor, adminUnblockActor, adminGetDirectors,adminBlockDirector,adminUnblockDirector, getDirectorRequests, adminApproveDirector, adminRejectDirector, adminGetActorAndDirectorCount, adminGetCastingCallsByGenre, adminGetPaymentHistory, adminGetMonthlyIncome} = require("../controllers/adminControllers");
 const { verifyToken } = require("../middlewares/authMiddleware");
 
 
@@ -18,5 +18,6 @@ router.post('/rejectdirector/:id',verifyToken("admin"), adminRejectDirector);
 router.get('/dashboard/actordirectorcount', verifyToken("admin"), adminGetActorAndDirectorCount);
 router.get('/dashboard/castingcallsbygenre', verifyToken("admin"), adminGetCastingCallsByGenre);
 router.get('/dashboard/paymenthistory', verifyToken("admin"), adminGetPaymentHistory);
+router.get('/dashboard/admincompensationmonthly', verifyToken("admin"), adminGetMonthlyIncome);
 
 module.exports = router;

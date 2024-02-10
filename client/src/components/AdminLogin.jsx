@@ -25,7 +25,6 @@ const AdminLogin = () => {
         e.preventDefault();
         try {
             const { data } = await axiosInstance.post('/admin/login', formData);
-            console.log(data);
             dispatch(setAdminCredentials(data.email));
             dispatch(setAdminToken(data.adminToken));
             setFormData({
@@ -35,7 +34,6 @@ const AdminLogin = () => {
             navigate('/admin/dashboard')
         } catch (error) {
             toast.error(error.response.data.error);
-            console.log(error.response.data.error);
         }
     }
 

@@ -31,12 +31,6 @@ const AdminSidebar = () => {
                         <div>
                             <h2 className="text-xl max-lg:text-lg font-extrabold">Admin Panel</h2>
                             <span className="flex items-center space-x-1">
-                                {/* <div
-                                    rel="noopener noreferrer"
-                                    className="text-xs hover:underline text-gray-400 font-semibold"
-                                >
-                                    View profile
-                                </div> */}
                             </span>
                         </div>
                     </div>

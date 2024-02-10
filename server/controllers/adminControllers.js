@@ -211,6 +211,30 @@ const adminGetPaymentHistory = async (req,res) => {
     }
 }
 
+const adminGetMonthlyIncome = async (req,res) => {
+    try {
+        const monthlyData = await PaidCompensation.aggregate([
+            {
+              $group: {
+                _id: { $month: "$createdAt" },
+                totalCompensation: { $sum: "$adminCompensation" }
+              }
+            },
+            {
+              $project: {
+                month: "$_id",
+                totalCompensation: 1,
+                _id: 0
+              }
+            }
+          ]);
+          res.status(200).json(monthlyData)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({ error: "Internal server error" })
+    }
+}
+
 
 module.exports = {
     adminLogin,
@@ -226,5 +250,6 @@ module.exports = {
     adminRejectDirector,
     adminGetActorAndDirectorCount,
     adminGetCastingCallsByGenre,
-    adminGetPaymentHistory
+    adminGetPaymentHistory,
+    adminGetMonthlyIncome
 }

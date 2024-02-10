@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../app/axiosInstance';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import Loader from './Loader';
-import { toast } from 'react-toastify';
 
 const DirectorScheduledAuditions = () => {
     const navigate = useNavigate();
@@ -59,7 +58,7 @@ const DirectorScheduledAuditions = () => {
     }
     useEffect(() => {
         getAuditions()
-    }, [])
+    }, [auditions])
 
     const serverUrl = "http://localhost:4000"
 
@@ -144,8 +143,10 @@ const DirectorScheduledAuditions = () => {
 
 
                                         <td className="py-2 px-4 border-b text-center space-x-3 w-96">
-
-                                            <button
+                                            {
+                                                audition?.paid === false ? (
+                                                    <>
+                                                    <button
                                                 className={`ml-2 px-2 py-2 w-32 text-white bg-yellow-600 hover:bg-yellow-800 rounded-lg`}
                                                 onClick={() => handleOpenPaymentModal(audition)}
                                             >Select and Pay
@@ -156,7 +157,11 @@ const DirectorScheduledAuditions = () => {
                                             >
                                                 Start Audition
                                             </button>
-
+                                                    </>
+                                                ) : (
+                                                    <><span className='text-green-500 font-bold'>Actor Selected</span></>
+                                                )
+                                            }
 
                                         </td>
                                     </tr>

@@ -12,6 +12,7 @@ const AdminDashboard = () => {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [paymentHistory, setPaymentHistory] = useState([]);
+  const [adminCompensationMonthly, setAdminCompensationMonthly] = useState([]);
 
   const castingCallsGenreWise = async () => {
     try {
@@ -69,6 +70,28 @@ const AdminDashboard = () => {
     castingCallsGenreWise()
   }, [])
 
+  useEffect(() => {
+    const fetchAdminCompensationMonthly = async () => {
+      try {
+        const { data } = await axiosInstance.get('/admin/dashboard/admincompensationmonthly', {
+          headers: {
+            "Authorization": localStorage.getItem("adminToken")
+          }
+        });
+        setAdminCompensationMonthly(data.map(monthData => ({ month: getMonthName(monthData.month), totalCompensation: monthData.totalCompensation })));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchAdminCompensationMonthly();
+  }, []);
+
+  const getMonthName = (monthNumber) => {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return months[monthNumber - 1];
+  };
+
   const pieChartData = {
     labels: castingCallsByGenre.map(item => item._id),
     datasets: [
@@ -81,13 +104,14 @@ const AdminDashboard = () => {
   };
 
   const lineChartData = {
-    labels: ['January', 'February', 'March', 'April', 'May'],
+
+    labels: adminCompensationMonthly.map(monthData => monthData.month),
     datasets: [
       {
-        label: 'Sample Line Chart',
+        label: 'Admin Compensation Monthly',
         fill: false,
         borderColor: 'rgba(75,192,192,1)',
-        data: [65, 59, 80, 81, 56],
+        data: adminCompensationMonthly.map(monthData => monthData.totalCompensation),
       },
     ],
   };

@@ -5,6 +5,7 @@ const { directorLogin, directorSignup, directorLogout, createCastingCall, getDir
 const { verifyToken } = require('../middlewares/authMiddleware');
 const { verifyDirectorIsBlocked } = require("../middlewares/isBlockedMiddleware");
 const PaidCompensation = require('../models/paidCompensation');
+const Audition = require('../models/auditionModel')
 
 const castingCallImageStorage = multer.memoryStorage({
     filename: function (req, file, cb) {
@@ -76,6 +77,9 @@ router.post("/my-server/capture-paypal-order", async (req, res) => {
             actorCompensation: actorCompensation
         })
         await paidCompensation.save()
+        const audition = await Audition.findById(req.body.auditionId);
+        audition.paid = true
+        await audition.save()
         res.status(httpStatusCode).json(jsonResponse);
     } catch (error) {
         console.error("Failed to create order:", error);
