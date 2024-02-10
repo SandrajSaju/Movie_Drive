@@ -60,7 +60,7 @@ const DirectorScheduledAuditions = () => {
         getAuditions()
     }, [auditions])
 
-    const serverUrl = "http://localhost:4000"
+    const serverUrl = "https://moviedrive.onrender.com"
 
     const createOrder = (data) => {
         // Order is created on the server and the order id is returned
