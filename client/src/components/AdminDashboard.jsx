@@ -150,8 +150,8 @@ const AdminDashboard = () => {
                     <td className="border px-4 py-2 text-center">{payment.actor.name}</td>
                     <td className="border px-4 py-2 text-center">{payment.audition.castingCall.castingCallTitle}</td>
                     <td className="border px-4 py-2 text-center">{payment.audition.castingCall.compensation}</td>
-                    <td className="border px-4 py-2 text-center">{payment.id}</td>
-                    <td className="border px-4 py-2 text-center">{payment.date}</td>
+                    <td className="border px-4 py-2 text-center">{payment.actorCompensation}</td>
+                    <td className="border px-4 py-2 text-center">{payment.adminCompensation}</td>
                     <td className="border px-4 py-2 text-center">{new Date(payment.createdAt).toLocaleDateString('en-GB')}</td>
                   </tr>
                 ))}

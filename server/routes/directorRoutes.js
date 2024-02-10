@@ -52,7 +52,7 @@ router.get('/getallpayments', verifyToken("director"), verifyDirectorIsBlocked, 
 router.post("/my-server/create-paypal-order", async (req, res) => {
     try {
         // use the cart information passed from the front-end to calculate the order amount detals
-        console.log(req.body);
+        // console.log(req.body);
         const { jsonResponse, httpStatusCode } = await createOrder(req.body);
         res.status(httpStatusCode).json(jsonResponse);
     } catch (error) {
@@ -64,10 +64,16 @@ router.post("/my-server/create-paypal-order", async (req, res) => {
 router.post("/my-server/capture-paypal-order", async (req, res) => {
     try {
         const { jsonResponse, httpStatusCode } = await captureOrder(req.body.orderID);
+        console.log(req.body);
+        const compensation = req.body.compensation;
+        const adminCompensation = compensation * 0.1;
+        const actorCompensation = compensation * 0.9;
         const paidCompensation = new PaidCompensation({
             director: req.body.directorId,
             actor: req.body.actorId,
-            audition: req.body.auditionId
+            audition: req.body.auditionId,
+            adminCompensation: adminCompensation,
+            actorCompensation: actorCompensation
         })
         await paidCompensation.save()
         res.status(httpStatusCode).json(jsonResponse);

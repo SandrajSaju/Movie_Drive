@@ -16,9 +16,18 @@ const paidCompensationSchema = new mongoose.Schema({
         ref:'Audition',
         required:true
     },
+    adminCompensation: {
+        type:Number,
+        required:true
+    },
+    actorCompensation: {
+        type:Number,
+        required:true
+    }
 },{
     timestamps:true
-})
+});
+
 
 const PaidCompensation = mongoose.model("PaidCompensation",paidCompensationSchema);
 module.exports = PaidCompensation;

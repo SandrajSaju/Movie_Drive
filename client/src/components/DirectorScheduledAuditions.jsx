@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../app/axiosInstance';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import Loader from './Loader';
+import { toast } from 'react-toastify';
 
 const DirectorScheduledAuditions = () => {
     const navigate = useNavigate();
@@ -81,7 +82,7 @@ const DirectorScheduledAuditions = () => {
             }),
         })
             .then((response) => response.json())
-            .then((order) => order.id);
+            .then((order) => order.id)
     };
     const onApprove = (data) => {
         // Order is captured on the server and the response is returned to the browser
