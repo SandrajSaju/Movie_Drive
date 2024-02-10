@@ -23,7 +23,7 @@ const ActorChatSidebar = ({ findParticularChat }) => {
 
     useEffect(() => {
         actorGetAllChats();
-    }, [])
+    }, [directors])
 
     const handleDirectorClick = (directorId) => {
         findParticularChat(directorId, actorInfo._id);

@@ -43,7 +43,7 @@ const ActorPayments = () => {
                                 <td className="py-2 px-4 border-b text-center font-medium">{payment.audition.castingCall.castingCallTitle}</td>
                                 <td className="py-2 px-4 border-b text-center font-medium">{payment.director.name}</td>
                                 <td className="py-2 px-4 border-b text-center font-medium">{payment.audition.castingCall.roleDescription}</td>
-                                <td className="py-2 px-4 border-b text-center font-bold text-green-600">₹ {payment.audition.castingCall.compensation}</td>
+                                <td className="py-2 px-4 border-b text-center font-bold text-green-600">₹ {payment.actorCompensation}</td>
                                 <td className="py-2 px-4 border-b text-center font-medium">{new Date(payment.createdAt).toLocaleDateString()}</td>
                             </tr>
                         ))}
